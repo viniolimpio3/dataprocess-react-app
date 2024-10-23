@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# DataProcess - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esse repositório contém o frontend da aplicação DataProcess
 
 ## Available Scripts
 
