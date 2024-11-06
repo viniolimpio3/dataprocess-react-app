@@ -1,10 +1,10 @@
-import React, { createContext, useCallback, useContext, useState, useHistory } from 'react'
+import React, { createContext, useCallback, useContext, useState, useNavigate } from 'react'
 import { toast } from 'react-toastify';
 import Util from '../helpers/Util';
 
 import api from '../services/api'
 
-require('dotenv/config')
+
 
 const AuthContext = createContext();
 
@@ -18,7 +18,6 @@ async function me(token){
 	
 	return !res.data ? false : res.data
 }
-
 function AuthProvider({children}) {
 	const [data, setData] = useState(() => {
 		const token = localStorage.getItem('@Trampae:token')

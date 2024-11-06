@@ -1,6 +1,6 @@
-import 'dotenv/config'
+
 import { useContext } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import api from '../services/api'
 import { me } from '../contexts/authContext'
 import { ValidationError } from 'yup'

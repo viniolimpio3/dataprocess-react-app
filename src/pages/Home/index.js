@@ -91,7 +91,7 @@ export default function Home() {
 
 	async function getMorePages() {
 		setServicePage(servicePage + 1)
-
+		console.log("paginaaa", servicePage);
 		if (areFilteredServices) {
 
 			const response = await api.get("/search/services", {

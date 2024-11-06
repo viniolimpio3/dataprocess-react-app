@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import { Route, Navigate } from 'react-router-dom'
 import Util from '../../helpers/Util'
 
 const  PrivateRoute = ({ component: Component, ...rest  }) =>{   
@@ -11,7 +11,8 @@ const  PrivateRoute = ({ component: Component, ...rest  }) =>{
                 (props) => isAuth ? (
                     <Component {...props} />
                 ): (
-                    <Redirect
+                    <Navigate
+                        replace
                         to={{
                             pathname:'/',
                             state:{from: props.location}

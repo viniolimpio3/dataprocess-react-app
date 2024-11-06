@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/authContext'
 import logoImg from '../../assets/logo.png'
 import Input from '../../components/Input'
@@ -16,18 +16,15 @@ import {
 	Header,
 	FormContainer,
 	Title,
-	ForgotPassword,
-	DisabledSection,
+	ForgotPassword
 } from './styles'
 
 
-
-import 'dotenv/config'
 import Util from '../../helpers/Util'
 
 
 export default function Logon() {
-	const history = useHistory()
+	const history = useNavigate()
 	
 	const [mail, setMail] = useState('')
 	const [pass, setPass] = useState('')
@@ -78,23 +75,17 @@ export default function Logon() {
 							Esqueceu a Senha?
 						</ForgotPassword>
 					</Link>
+					<Link to="/register">
+						<ForgotPassword>
+							Registre-se
+						</ForgotPassword>
+					</Link>
 				</FormContainer>	
 
 				<div className="indicator">
 					<FiArrowDown size={'3rem'} />
 				</div>
 			</ActiveSection>
-
-
-			<DisabledSection>
-				<div>
-					<Title> Ainda não tem Login? </Title>
-					<h2> Tá esperando o que?</h2>
-					<Link className="button secondary" to="/register">
-						Registre-se já!
-					</Link>
-				</div>
-			</DisabledSection>
 		</Container>
 	)
 }
