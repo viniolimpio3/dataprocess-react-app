@@ -6,8 +6,8 @@
 }
 
 :root {
-    --primary: #3cae96;
-    --secundary: #121429;
+    --primary: #009b79;
+    --secundary: #333333;
     --black: #000;
     --gray: #333;
     --light-gray: #cccccc;
@@ -76,7 +76,7 @@ form input, select{
 
 
 form input:focus, textarea:focus{
-    border-left: 6px solid #14b3b0;
+    border-left: 6px solid var(--primary);
 }
 form textarea{
     width: 100%;
@@ -94,7 +94,7 @@ form textarea{
 .button{
     width: 100%;
     height: 50px;
-    background: #14b3b0;
+    background: var(--primary);
     border: 0;
     border-radius: 5px;
     color: #FFF;
@@ -114,13 +114,13 @@ form textarea{
 
 .secondary{
     background: none;
-    border: 2px solid #14b3b0;
-    color: #14b3b0;
+    border: 2px solid var(--primary);
+    color: var(--primary);
 }
 .Button{
     width: 100%;
     height: 60px;
-    background: #14b3b0;
+    background: var(--primary);
     border: 0;
     border-radius: 10px;
     color: #FFF;
@@ -139,7 +139,7 @@ form textarea{
 .B-utton{
     width: 100%;
     height: 60px;
-    background: #14b3b0;
+    background: var(--primary);
     border: 0;
     border-radius: 10px;
     color: #FFF;

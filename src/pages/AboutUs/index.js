@@ -10,14 +10,14 @@ import {
 
 import { FiUsers, FiClipboard, FiCheckCircle } from 'react-icons/fi';
 import NavBar from '../../components/Navbar'
-import TrampaeLogo from '../../assets/logo.png';
+import DataProcLogo from '../../assets/logo-dataprocess.png';
 
 export default function AboutUs() {
     return (
         <Container>
             <NavBar />
             <div className="logoDiv">
-                <img src={TrampaeLogo} alt="Logo" />
+                <img src={DataProcLogo} alt="Logo" />
             </div>
             {/* QUEM SOMOS */}
             <ContainerPost>
@@ -43,7 +43,6 @@ export default function AboutUs() {
                 </p>
             </ContainerPost>
 
-            {/*NOSSOS OBJETIVOS*/}
             <ContainerPost>
                 <IconsContainer>
                 <FiCheckCircle size={50} className="objectives" />

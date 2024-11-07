@@ -79,8 +79,8 @@ export const Header = styled.header`
 	padding: 20px;
 
 	img {
-		width: 8rem;
-		height: 8rem;
+		width: 4rem;
+		height: 4rem;
 	}
 
 	@media (max-width: 599px) {

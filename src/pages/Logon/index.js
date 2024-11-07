@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/authContext'
-import logoImg from '../../assets/logo.png'
+import logoImg from '../../assets/logo-dataprocess.png'
 import Input from '../../components/Input'
 
 import validate from '../../helpers/validators'
@@ -43,8 +43,7 @@ export default function Logon() {
 			if(userExists) goToHome()
 			else toast.error('Email e (ou) senha incorreto(s)')
 
-		})
-		.catch((e) => console.log(e))
+		}).catch((e) => console.log(e))
 
 	}
 	function goToHome() {
@@ -61,7 +60,7 @@ export default function Logon() {
 				</Header>
 
 				<FormContainer>
-					<Title> Faça seu login! </Title>
+					<Title> Faça seu login </Title>
 
 					<form>
 						<Input onChange={e => setMail(e.target.value)} type="email" name="E-mail" />

@@ -10,7 +10,7 @@ const AuthContext = createContext();
 
 
 async function me(token){
-	const res = await api.get('/me', {headers:{
+	const res = await api.get('/api/Auth/me', {headers:{
 		authorization: `Bearer ${token}`
 	}})
 
@@ -34,16 +34,14 @@ function AuthProvider({children}) {
 		
 	const signIn = useCallback(async ({ mail, pass }) => {
 
-        const basic = `Basic ${btoa(`${mail}:${pass}`)}`
-        
 		try {
-			const response = await api.post('/login',{},{
-				headers: {
-					authorization: basic,
-				}
+			const response = await api.post('/api/Auth/login',{
+				email: btoa(mail),
+				password: btoa(pass),
+				nome: ""
 			})
 
-			const { token } = response.data
+			const { token } = response.data.data
 
 			const user = await me(token)
 
