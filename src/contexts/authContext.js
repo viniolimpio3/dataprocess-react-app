@@ -43,10 +43,10 @@ function AuthProvider({children}) {
 
 			const { token } = response.data.data
 
-			const user = await me(token)
+			let user = await me(token)
 
 			localStorage.setItem('@Trampae:token', token)
-			localStorage.setItem('@Trampae:user', JSON.stringify(user));
+			localStorage.setItem('@Trampae:user', JSON.stringify(user.data));
 			
             api.defaults.headers.authorization = `Bearer ${token}`
             

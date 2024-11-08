@@ -1,27 +1,11 @@
 import React from 'react'
-import { Route, Navigate } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import Util from '../../helpers/Util'
 
-const  PrivateRoute = ({ component: Component, ...rest  }) =>{   
+const PrivateRoute = () => {   
     const isAuth = Util.isAuthenticated()
-    return(
-        <Route 
-            { ...rest }
-            render={
-                (props) => isAuth ? (
-                    <Component {...props} />
-                ): (
-                    <Navigate
-                        replace
-                        to={{
-                            pathname:'/',
-                            state:{from: props.location}
-                        }}
-                    />
-                )
-                
-            }
-        />
-    )
+    
+    return isAuth == true ? <Outlet /> : <Navigate to="/logout" replace />
 }
-export default PrivateRoute;
+
+export default PrivateRoute

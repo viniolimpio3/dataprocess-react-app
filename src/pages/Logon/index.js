@@ -24,7 +24,7 @@ import Util from '../../helpers/Util'
 
 
 export default function Logon() {
-	const history = useNavigate()
+	const navigate = useNavigate()
 	
 	const [mail, setMail] = useState('')
 	const [pass, setPass] = useState('')
@@ -48,8 +48,8 @@ export default function Logon() {
 	}
 	function goToHome() {
 		const user = Util.getUser()
-		toast.success(`Isso aí ${user.name}, espera só um pouquinho..`)
-		setInterval(() => history.push('/home') , 3000)
+		toast.success(`Isso aí ${user.nome}, espera só um pouquinho..`)
+		setInterval(() => navigate("/home") , 3000)
 	}
 
 	return (
