@@ -1,15 +1,5 @@
-import React, { useEffect, useState } from "react"
-// import { toast } from "react-toastify"
-// import { Link } from "react-router-dom"
-
-import { useAuth } from "../../contexts/authContext"
-// import api from "../../services/api"
-// import ibge from "../../services/ibge"
-
-// import Post from "../../components/Post"
-// import Select from "../../components/Select"
-// import Navbar from "../../components/Navbar"
-// import EditProfileModal from "../../components/editProfileModal"
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../../contexts/authContext";
 
 import { Box, Grid2 as Grid, CssBaseline, CardContent } from '@mui/material';
 import Sidebar from '../../components/Sidebar';
@@ -21,107 +11,10 @@ import PaymentsTable from '../../components/PaymentsTable';
 import ContractsPieChart from '../../components/ContractsPieChart';
 
 
-import { Container, SideBar, MainContent, FilterContainer } from "./styles.js"
+import { Container, SideBar, MainContent, FilterContainer } from "./styles.js";
 
-//--Começo do Front-end---//
 export default function Home() {
 	const { user } = useAuth()
-	// const [isFilterActive, setFilterActive] = useState(false)
-	// const [areFilteredServices, setAreFilteredServices] = useState(false)
-	// const [servicePage, setServicePage] = useState(2)
-	// const [services, setServices] = useState([])
-
-	// const [ufs, setUfs] = useState([])
-	// const [cities, setCities] = useState([])
-
-	// const [selectedUf, setSelectedUf] = useState()
-	// const [selectedCity, setSelectedCity] = useState()
-
-	// const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
-
-	// function clearFilters() {
-	// 	getServicesData()
-	// 	setServicePage(2)
-	// 	setSelectedUf("")
-	// 	setSelectedCity("")
-	// }
-
-	// async function getUfs() {
-	// 	const ufs = await ibge.getUfs()
-
-	// 	setUfs(ufs)
-	// }
-
-	// async function getCities() {
-	// 	const cities = await ibge.getCities(selectedUf)
-
-	// 	setCities(cities)
-	// }
-
-	// async function getServicesData() {
-	// 	const apiResponse = await api.get("search/services")
-	// 	setServices(apiResponse.data.services)
-	// }
-
-	// useEffect(() => {
-	// 	getServicesData()
-
-	// 	getUfs()
-	// }, [])
-
-	// useEffect(() => {
-	// 	getCities()
-	// }, [selectedUf])
-
-	// async function handleSubmit(e) {
-	// 	e.preventDefault()
-
-	// 	const response = await api.get("/search/services", {
-	// 		params: {
-	// 			uf: selectedUf,
-	// 			city: selectedCity,
-	// 		},
-	// 	})
-
-	// 	const data = response.data
-	// 	setServices(data.services)
-	// 	setAreFilteredServices(true)
-	// }
-
-	// async function getMorePages() {
-	// 	setServicePage(servicePage + 1)
-	// 	console.log("paginaaa", servicePage);
-	// 	if (areFilteredServices) {
-
-	// 		const response = await api.get("/search/services", {
-	// 			params: {
-	// 				uf: selectedUf,
-	// 				city: selectedCity,
-	// 				page: servicePage,
-	// 			},
-	// 		})
-
-	// 		if (response.data.services.length >= 1) {
-	// 			setServices([...services, ...response.data.services])
-	// 		} else {
-	// 			toast.warning("Não tem mais nada por aqui!")
-	// 		}
-	// 	} else {
-	// 		const response = await api.get("/search/services", {
-	// 			params: {
-	// 				page: servicePage,
-	// 			},
-	// 		})
-
-	// 		console.log("tamanho", response.data.services)
-	// 		if (response.data.services.length < 1) {
-	// 			toast.warning("Não tem mais nada por aqui!")
-	// 		} else {
-	// 			setServices([...services, ...response.data.services])
-	// 		}
-	// 	}
-	// }
-
 	return (
 		<>
 			<Box sx={{ display: 'flex' }}>
