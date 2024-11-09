@@ -48,15 +48,15 @@ export default function Logon() {
 	}
 	function goToHome() {
 		const user = Util.getUser()
-		toast.success(`Isso aí ${user.nome}, espera só um pouquinho..`)
-		setInterval(() => navigate("/home") , 3000)
+		toast.success(`Boa ${user.nome}, espera só um pouquinho..`)
+		setInterval(() => navigate("/home") , 1000)
 	}
 
 	return (
 		<Container>
 			<ActiveSection>
 				<Header>
-					<img src={logoImg} alt="Trampaê"></img>
+					<img src={logoImg} alt="DataProcess"></img>
 				</Header>
 
 				<FormContainer>

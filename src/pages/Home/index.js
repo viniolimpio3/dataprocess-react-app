@@ -12,6 +12,7 @@ import ContractsPieChart from '../../components/ContractsPieChart';
 
 
 import { Container, SideBar, MainContent, FilterContainer } from "./styles.js";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
 	const { user } = useAuth()

@@ -119,8 +119,8 @@ export const Header = styled.header`
 	}
 
 	img {
-		width: 6rem;
-		height: 6rem;
+		width: 3.5rem;
+		height: 3.5rem;
 	}
 `
 

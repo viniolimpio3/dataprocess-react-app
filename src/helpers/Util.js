@@ -18,11 +18,11 @@ class Util{
     static isAuthenticated(){        
         if(localStorage.length === 0 ) return false 
         
-        const token = localStorage.getItem('@Trampae:token')
+        const token = localStorage.getItem('@DataProcess:token')
         
         if( typeof token === undefined || token === null || token === '') return false
 
-        const localUser = JSON.parse( localStorage.getItem('@Trampae:user') )
+        const localUser = JSON.parse( localStorage.getItem('@DataProcess:user') )
         
         console.log(localUser)
         if(!localUser || localUser === '' || typeof localUser !== 'object' || !localUser.email) return false
@@ -46,7 +46,7 @@ class Util{
     }
 
     static getUser(){
-        const user = JSON.parse(localStorage.getItem('@Trampae:user'))
+        const user = JSON.parse(localStorage.getItem('@DataProcess:user'))
         return !user ? false : user;
     }
 }

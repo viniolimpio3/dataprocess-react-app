@@ -1,71 +1,108 @@
-import React, { useState } from "react"
-import "./styles.js"
-import { 
-  Container, 
-  ContainerLeft, 
-  FormContainer, 
-  InputEmail 
-} from './styles' 
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
-import LogoImg from "../../assets/logo.png"
+import logoImg from '../../assets/logo-dataprocess.png'
+import Input from '../../components/Input'
 
-import { useNavigate } from "react-router-dom"
-import api from "../../services/api"
-import { toast } from "react-toastify"
+import {
+  Container,
+  ActiveSection,
+  Header,
+  FormContainer,
+  DisabledSection
+} from './styles'
+
+import { FiArrowDown } from 'react-icons/fi';
+import { toast } from 'react-toastify'
+
+//---Começo da API---//
 
 
+export default function Register() {
+  const [name, changeName] = useState('')
+  const [email, changeMail] = useState('')
+  const [password, changePass] = useState('')
 
+  // //get ufs
 
-//---Começo API---//
+  // useEffect(() => {
+  // 	async function getUfsOnIBGE() {
+  // 		const ufs = await ibge.getUfs()
+  // 		setUfs(ufs)
 
+  // 	}
+  // 	getUfsOnIBGE()
+  // }, [])
 
-export default function Forget() {
-  const history = useNavigate()
+  // useEffect(() => {
+  // 	async function getCitiesOnIBGE() {
+  // 		const cities = await ibge.getCities(selectedUf)
+  // 		setCities(cities)
 
-  const [mail, setMail] = useState('')
+  // 	}
+  // 	getCitiesOnIBGE()
+  // }, [selectedUf])
 
-  function submit(e) {
+  //  SUBMIT- -----------------------------
+
+  async function submitRegister(e) {
     e.preventDefault()
+    toast.warn("Infelizmente, essa função ainda não está ativa na plataforma :/")
+    // if (password.length < 6) return toast.error('A senha deve conter no mínimo 6 dígitos!')
 
-    if(mail === undefined || mail === '') return toast.warning('Você deve preencher o campo para prosseguir!')
-    else if(!mail.includes('@') && !mail.includes('.')) return toast.warning('E-mail inválido!')
+    // api.post('/signup', {
+    //   name: name,
+    //   email: email,
+    //   password: password
+    // })
+    //   .then(res => {
+    //     console.log(res, 'res')
+    //     localStorage.removeItem('@DataProcess:token')
+    //     //confirmação
+    //     localStorage.setItem('@DataProcess:token', `Bearer ${res.data.token}`)
 
-    const body = {mail: mail}
+    //     setTimeout(() => {
+    //       goToLogin()
+    //     }, 2000)
+    //   })
+    //   .catch(e => {
+    //     localStorage.removeItem('@DataProcess:token')
 
-    api.post('/forgot', body).then((res) => {
-
-      if(res.data.Error) toast.error(`Erro: ${res}`)
-      
-      toast.success('Email enviado com sucesso!')
-
-      setTimeout(() => {
-        goToLogin()
-      }, 5000)
-
-    }).catch((e) => {
-      localStorage.clear()
-      toast.error('Não foi possível prosseguir com a ação')
-    })
+    //     console.log(e)
+    //     toast.error('Erro..')
+    //   })
   }
-
   function goToLogin() {
-    history.push('/')
+    window.location = '/'
   }
 
   return (
-      <Container>
-        
-        <ContainerLeft>
-          <h1>Recupere sua senha e junte-se a nossa comunidade!</h1>
-        </ContainerLeft>
-             
+    <Container>
+      <DisabledSection>
+        <h1>Lembrou a senha?</h1>
+        <Link className="button" to="/">Volte para o Login</Link>
+      </DisabledSection>
+
+      <ActiveSection>
+        <Header>
+          <img src={logoImg} width={125} alt="DataProcess"></img>
+          <h1 className="title"> Esqueci minha senha </h1>
+        </Header>
+
         <FormContainer>
-          <img src={LogoImg} alt="Logo" />
-          <h1>Digite seu email aqui!</h1>
-          <InputEmail type="email" onChange={e => setMail(e.target.value)} placeholder="E-mail"/>
-          <a onClick={submit} type='submit' >Solicitar troca de senha</a>
-          <a href="/">Voltar para o login</a>
+          <form>
+            <Input type="Email" name="E-mail" onChange={e => changeMail(e.target.value)} />
+            <button type="submit" className="button" onClick={submitRegister}>
+              Prosseguir
+            </button>
+          </form>
         </FormContainer>
-      </Container>
+
+        <div className="indicator">
+          <FiArrowDown size={'3rem'} />
+        </div>
+
+      </ActiveSection>
+    </Container>
   )
 }

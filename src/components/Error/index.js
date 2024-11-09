@@ -1,31 +1,30 @@
-import React, { useState } from 'react'
-import {Main, Container} from './styles'
-import Modal from 'react-modal'
-Modal.setAppElement('#root')
-const Error = ({ expiresTime, label, message}) =>{
-    const [isOpen, setIsOpen] = useState(true)
-    const ref = React.createRef()
-    function close(){
-        setIsOpen(false)
+import React from 'react'
+import { Container } from './styles'
+
+import { useNavigate } from 'react-router-dom'
+import { Alert, AlertTitle, Button } from '@mui/material'
+
+const Error = ({ expiresTime, title, message }) => {
+    const navigate = useNavigate()
+
+    const left = () => {
+        navigate('/logout')
     }
 
-    setTimeout(() =>{
-        ref.current.style='display:none !important'
-        close()
-    }, expiresTime)
+    // setTimeout(() => {
+    //     left()
+    // }, expiresTime);
 
-    return(
-        <Container ref={ref}>
-            <Main>
-                <Modal
-                    contentLabel={label}
-                    isOpen={isOpen}
-                    onRequestClose={close}
-                >
+    return (
+        <Container>
+            <Alert severity="error" style={{marginTop: '20px', minWidth: '300px', display: 'flex', justifyContent: 'center'}}>
+                <AlertTitle>{title}</AlertTitle>
+                <p>
                     {message}
-                </Modal>
-            </Main>
-        </Container>   
+                </p>
+                <Button style={{marginTop: '20px'}} variant='outlined' color='error'  onClick={left}> Voltar </Button>
+            </Alert>
+        </Container>
     )
 }
 
