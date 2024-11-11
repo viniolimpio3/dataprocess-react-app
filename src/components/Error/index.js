@@ -10,11 +10,6 @@ const Error = ({ expiresTime, title, message }) => {
     const left = () => {
         navigate('/logout')
     }
-
-    // setTimeout(() => {
-    //     left()
-    // }, expiresTime);
-
     return (
         <Container>
             <Alert severity="error" style={{marginTop: '20px', minWidth: '300px', display: 'flex', justifyContent: 'center'}}>

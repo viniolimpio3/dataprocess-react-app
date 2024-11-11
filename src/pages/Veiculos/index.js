@@ -1,54 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useAuth } from "../../contexts/authContext";
-import Grid from "@mui/material/Grid2";
-import { Box, Container, Typography, Button, CssBaseline } from '@mui/material';
+
+import { Box, CssBaseline } from '@mui/material';
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
+import BasicCRUD from "../../components/BasicCrud";
 import api from "../../services/api";
-import { toast } from "react-toastify";
-import CarList from "./carList";
-import CarForm from "./carForm";
-import { AddCircleOutlineOutlined } from "@mui/icons-material";
 
 export default function Veiculos() {
 	const { user } = useAuth()
-	const [carros, setCarros] = useState([]);
-    const [editingCar, setEditingCar] = useState(null);
 
-	const buscaCarros = async () => {
-		let response = await api.get('api/v1/carro', {
-			headers: {
-				Authorization: `Bearer ` + localStorage.getItem('@DataProcess:token')
+	const carrosFields = [
+		{ label: "Modelo", name: "modelo", type: "text" },
+		{ label: "Ano", name: "ano", type: "number" },
+		{ label: "Cor", name: "cor", type: "text" },
+		{ label: "Placa", name: "placa", type: "text" },
+		{ label: "Renavam", name: "renavam", type: "text" }
+	]
+
+	const requiredFields = ["nome", "nascimento", "idTipoFuncionario"]
+
+	const validation = (formData) => {
+		// Validação de placa
+		const padraoAntigo = /^[A-Z]{3}-\d{4}$/; // Ex: ABC-1234
+        const padraoMercosul = /^[A-Z]{3}\d[A-Z]\d{2}$/; // Ex: ABC1D23
+
+		if(!(padraoAntigo.test(formData.placa) || padraoMercosul.test(formData.placa))){
+			return {
+				success: false,
+				message: "Placa inválida. Use o formato 'ABC-1234' ou 'ABC1D23'."
 			}
-		})
-
-		if (response.status !== 200) {
-			toast.error('Ocorreu um erro na listagem de carros!');
-			return;
 		}
-
-		setCarros(response.data.data)
+        return {
+			success: true
+		}
 	}
-
-	useEffect(() => {
-		buscaCarros();
-	}, []);
-
-	const handleAddCar = async (car) => {
-		const newCar = await new Promise() // addCarro(car);
-		setCarros([...carros, newCar]);
-	};
-
-	const handleUpdateCar = async (updatedCar) => {
-		const updated = await new Promise( ) //updateCarro(updatedCar.id, updatedCar);
-		setCarros(carros.map(car => car.id === updated.id ? updated : car));
-		setEditingCar(null);
-	};
-
-	const handleDeleteCar = async (id) => {
-		// await deleteCarro(id);
-		setCarros(carros.filter(car => car.id !== id));
-	};
 
 	return (
 		<Box sx={{ display: 'flex' }}>
@@ -56,35 +42,13 @@ export default function Veiculos() {
 			<Sidebar />
 			<Box component="main" sx={{ flexGrow: 1, p: 3, bgcolor: '#F5F5F5', minHeight: '100vh' }}>
 				<Header user={user} />
-				<Grid container spacing={1}>
-					<Grid item size={{xs: 6}}>
-						<Typography variant="h6" align="left" gutterBottom>
-							Gerenciamento de Carros
-						</Typography>
-					</Grid>
-					<Grid item size={{xs: 6}}>
-						<Box display="flex" justifyContent="center" my={2}>
-							<Button variant="outlined" color="success" onClick={() => setEditingCar({})}>
-								<AddCircleOutlineOutlined /> Adicionar Carro
-							</Button>
-						</Box>
-					</Grid>
-					<Grid item size={{xs: 12}}>
-
-						{editingCar && (
-							<CarForm
-								car={editingCar}
-								onSave={editingCar.id ? handleUpdateCar : handleAddCar}
-								onCancel={() => setEditingCar(null)}
-							/>
-						)}
-						<CarList
-							carros={carros}
-							onEdit={setEditingCar}
-							onDelete={handleDeleteCar}
-						/>
-					</Grid>
-				</Grid>
+				<BasicCRUD
+					api={api}
+					entityName={"carro"}
+					fields={carrosFields}
+					requiredFields={requiredFields}
+					customValidationFunction={validation}
+				/>
 			</Box>
 		</Box>
 	)

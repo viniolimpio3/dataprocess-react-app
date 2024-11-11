@@ -3,16 +3,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Logon from './pages/Logon'
 import Register from './pages/Register'
 import Home from './pages/Home'
-import AboutUs from './pages/AboutUs'
-import NewService from './pages/NewService'
 import Forget from './pages/Forget'
 import Recover from './pages/Recover'
-import Profile from './pages/Profile'
-import TalkWithUs from './pages/TalkWithUs'
-
+// import Profile from './pages/Profile'
 import PrivateRoute from './components/PrivateRoute'
 import Logout from './components/Logout'
-import Util from './helpers/Util'
 import Error from './components/Error'
 import Rh from './pages/RH'
 import Fretes from './pages/Fretes'
@@ -28,10 +23,10 @@ export default function AppRoutes() {
             path: "/home",
             element: <Home />
         },
-        {
-            path: "/profile",
-            element: <Profile />
-        },
+        // {
+        //     path: "/profile",
+        //     element: <Profile />
+        // },
         {
             path: "/rh",
             element: <Rh />
@@ -66,11 +61,7 @@ export default function AppRoutes() {
                 <Route path="/" exact element={<Logon />} />
                 <Route path="/logout" exact element={<Logout />} />
                 <Route path="/register" exact element={<Register />} />
-                <Route path="/new-service" exact element={<NewService />} />
-                <Route path="/aboutus" exact element={<AboutUs />} />
                 <Route path="/forget" exact element={<Forget />} />
-                <Route path="/profile/:id" exact element={<Profile />} />
-                <Route path="/talkwithus" exact element={<TalkWithUs />} />
 
                 {privateRoutes.map((item, index) => (
                     <Route path={item.path} element={<PrivateRoute />} key={index}>
@@ -79,7 +70,7 @@ export default function AppRoutes() {
                 ))}
                 <Route exact element={<Recover />} path="/recover/:url_hash" />
 
-                <Route path="/*" element={<Error title="minha lable" message={"404, not found"} expiresTime={10000} />} />
+                <Route path="/*" element={<Error title="404, Não encontrado" message={"Você será redirecionado para o login em alguns instantes"} expiresTime={20000} />} />
             </Routes>
         </BrowserRouter>
     )

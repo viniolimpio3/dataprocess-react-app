@@ -49,7 +49,7 @@ export default function Logon() {
 	function goToHome() {
 		const user = Util.getUser()
 		toast.success(`Boa ${user.nome}, espera só um pouquinho..`)
-		setInterval(() => navigate("/home") , 1000)
+		setInterval(() => window.location = '/home' , 1000)
 	}
 
 	return (
