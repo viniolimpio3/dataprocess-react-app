@@ -20,8 +20,8 @@ async function me(token){
 }
 function AuthProvider({children}) {
 	const [data, setData] = useState(() => {
-		const token = localStorage.getItem('@Trampae:token')
-		const user = localStorage.getItem('@Trampae:user')
+		const token = localStorage.getItem('@DataProcess:token')
+		const user = localStorage.getItem('@DataProcess:user')
 
 		if (token && user) {
 			api.defaults.headers.authorization = `Bearer ${token}`
@@ -45,8 +45,8 @@ function AuthProvider({children}) {
 
 			let user = await me(token)
 
-			localStorage.setItem('@Trampae:token', token)
-			localStorage.setItem('@Trampae:user', JSON.stringify(user.data));
+			localStorage.setItem('@DataProcess:token', token)
+			localStorage.setItem('@DataProcess:user', JSON.stringify(user.data));
 			
             api.defaults.headers.authorization = `Bearer ${token}`
             
@@ -61,12 +61,12 @@ function AuthProvider({children}) {
 	}, [])
 
 	const refreshUser = useCallback(async () => {
-		const user = JSON.parse(localStorage.getItem('@Trampae:user'))
+		const user = JSON.parse(localStorage.getItem('@DataProcess:user'))
 
 		try{
 			const apiResponse = await api.get(`/user/${user.id}`)
 
-			localStorage.setItem('@Trampae:user', JSON.stringify(apiResponse.data.exists));
+			localStorage.setItem('@DataProcess:user', JSON.stringify(apiResponse.data.exists));
 			setData({ user: apiResponse.data.exists })
 		}catch(e){
 			console.log("context error", e);
