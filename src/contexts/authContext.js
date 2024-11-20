@@ -4,21 +4,17 @@ import Util from '../helpers/Util';
 
 import api from '../services/api'
 
-
-
 const AuthContext = createContext();
-
 
 async function me(token){
 	const res = await api.get('/api/Auth/me', {headers:{
 		authorization: `Bearer ${token}`
-	}})
-
-	if(res.data) res.data.image_url = Util.api_base_url(res.data.image_url)
-	
+	}})	
 	return !res.data ? false : res.data
 }
 function AuthProvider({children}) {
+	const [isAuthenticated, setIsAuthenticated] = useState(false);
+
 	const [data, setData] = useState(() => {
 		const token = localStorage.getItem('@DataProcess:token')
 		const user = localStorage.getItem('@DataProcess:user')
@@ -52,9 +48,12 @@ function AuthProvider({children}) {
             
             setData({ token, user });
 
+			setIsAuthenticated(true);
+
             return true;
 
 		} catch (error) {
+			setIsAuthenticated(false);
             localStorage.clear()
 			toast.error(`Erro...`)
 		}
@@ -76,7 +75,7 @@ function AuthProvider({children}) {
 
 	}, [])
 
-	return <AuthContext.Provider value={{ user: data.user, signIn, refreshUser }}>{children}</AuthContext.Provider>
+	return <AuthContext.Provider value={{ user: data.user, signIn, refreshUser, isAuthenticated }}>{children}</AuthContext.Provider>
 }
 
 function useAuth() {

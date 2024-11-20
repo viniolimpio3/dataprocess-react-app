@@ -7,7 +7,7 @@ import EntityForm from "./entityForm";
 import Util from "../../helpers/Util";
 import { toast } from "react-toastify";
 
-export default function BasicCRUD({ entityName, fields, api, requiredFields, customValidationFunction }) {
+export default function BasicCRUD({ entityName, fields, api, requiredFields, customValidationFunction, subEntities = false }) {
 	const [entities, setEntities] = useState([]);
 	const [editingEntity, setEditingEntity] = useState(null);
 
@@ -15,8 +15,8 @@ export default function BasicCRUD({ entityName, fields, api, requiredFields, cus
 		try {
 			const response = await api.get(`/api/v1/${entityName}`, Util.getApiAuthHeader());
 			if (response.status === 200) setEntities(response.data.data);
-		} catch {
-			console.error(`Erro ao carregar ${entityName}!`);
+		} catch (ex) {
+			toast.error(`Erro ao carregar ${entityName}! `, ex);
 		}
 	};
 
@@ -33,7 +33,7 @@ export default function BasicCRUD({ entityName, fields, api, requiredFields, cus
 				toast.success("Criado com sucesso!");
 			}
 		} catch {
-			console.error(`Erro ao adicionar ${entityName}!`);
+			toast.error(`Erro ao adicionar ${entityName}!`);
 		}
 	};
 
@@ -46,7 +46,7 @@ export default function BasicCRUD({ entityName, fields, api, requiredFields, cus
 				toast.success("Atualizado com sucesso");
 			}
 		} catch {
-			console.error(`Erro ao atualizar ${entityName}!`);
+			toast.error(`Erro ao atualizar ${entityName}!`);
 		}
 	};
 
@@ -57,7 +57,7 @@ export default function BasicCRUD({ entityName, fields, api, requiredFields, cus
 			toast.success("Deletado com sucesso");
 			setEntities(entities.filter(entity => entity.id !== id));
 		} catch {
-			console.error(`Erro ao deletar ${entityName}!`);
+			toast.error(`Erro ao deletar ${entityName}!`);
 		}
 	};
 
@@ -84,6 +84,8 @@ export default function BasicCRUD({ entityName, fields, api, requiredFields, cus
 						onCancel={() => setEditingEntity(null)}
 						requiredFields={requiredFields}
 						customValidationFunction={customValidationFunction}
+						subEntities={subEntities}
+						api={api}
 					/>
 				)}
 				<EntityList

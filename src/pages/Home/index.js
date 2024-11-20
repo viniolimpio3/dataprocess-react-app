@@ -7,7 +7,7 @@ import Header from '../../components/Header';
 import StatCard from '../../components/StatCard';
 import BillingSummary from '../../components/BillingSummary';
 import PaymentsTable from '../../components/PaymentsTable';
-import ContractsPieChart from '../../components/ContractsPieChart';
+import PieChartGeneric from '../../components/PieChartGeneric';
 
 export default function Home() {
 	const { user } = useAuth()
@@ -33,7 +33,7 @@ export default function Home() {
 						<PaymentsTable />
 					</Grid>
 					<Grid item size={{ xs: 12, sm: 6}} >
-						<ContractsPieChart />
+						
 					</Grid>
 				</Grid>
 			</Box>

@@ -32,7 +32,7 @@ export default function Register() {
 
 		api.post('/api/Auth/register', {
 			nome: name,
-			email: email,
+			email: btoa(email),
 			password: btoa(password)
 		})
 			.then(res => {

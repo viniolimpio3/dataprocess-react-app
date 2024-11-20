@@ -15,6 +15,7 @@ import Financeiro from './pages/Financeiro'
 import Clientes from './pages/Clientes'
 import Veiculos from './pages/Veiculos'
 import Relatorios from './pages/Relatorios'
+import Fornecedores from './pages/Fornecedores'
 
 export default function AppRoutes() {
 
@@ -23,10 +24,10 @@ export default function AppRoutes() {
             path: "/home",
             element: <Home />
         },
-        // {
-        //     path: "/profile",
-        //     element: <Profile />
-        // },
+        {
+            path: "/fornecedores",
+            element: <Fornecedores />
+        },
         {
             path: "/rh",
             element: <Rh />

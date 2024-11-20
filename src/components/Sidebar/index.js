@@ -4,7 +4,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import DnsIcon from "@mui/icons-material/Dns";
 import { Menu } from "./menu";
 import { ExpandButton } from "./expandButton";
-import { Assessment, AttachMoney, Diversity3, LocalShipping, Padding, PeopleAlt, TimeToLeave } from "@mui/icons-material";
+import { Assessment, Assignment, AttachMoney, Diversity3, LocalShipping, Padding, PeopleAlt, TimeToLeave } from "@mui/icons-material";
 import logoImg from '../../assets/logo-dataprocess.png'
 
 const styles = {
@@ -56,6 +56,11 @@ const SideBar = () => {
             path: "/veiculos",
             title: "Veículos",
             icon: <TimeToLeave />,
+        },
+        {
+            path: "/fornecedores",
+            title: "Fornecedores",
+            icon: <Assignment />,
         },
         {
             path: "/relatorios",

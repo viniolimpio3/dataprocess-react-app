@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { DeleteOutlined, EditOutlined } from "@mui/icons-material";
 
-function EntityList({ entities, columns, onEdit, onDelete }) {
+function EntityList({ entities, columns, onEdit, onDelete, action = true, customAction }) {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -27,36 +27,73 @@ function EntityList({ entities, columns, onEdit, onDelete }) {
 
     return (
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-            <TableContainer component={Paper} sx={{ maxHeight: 500 }}>
-                <Table stickyHeader aria-label="sticky table">
+            <TableContainer component={Paper} 
+                sx={{ 
+                    maxHeight: 500,
+                    maxWidth: '100vw !important',
+                    overflowX: 'auto'
+                }}
+            >
+                <Table aria-label="sticky table" sx={{ minWidth: 750 }}>
                     <TableHead>
                         <TableRow>
-                            {columns.map((col) => (
-                                <TableCell key={col.name}>{col.label}</TableCell>
-                            ))}
-                            <TableCell align="right">Ação</TableCell>
+                            {columns.map((col) => {
+                                if (col.hidden !== true)
+                                    return (
+                                        <TableCell
+                                            sx={{
+                                                whiteSpace: 'nowrap',
+                                                overflow: 'hidden',
+                                                textOverflow: 'ellipsis',
+                                            }}
+                                            key={col.name}
+                                        >
+                                            {col.label}
+                                        </TableCell>
+                                    )
+                            })}
+                            {action &&
+                                <TableCell align="right">Ação</TableCell>
+                            }
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {entities.map((entity) => (
                             <TableRow key={entity.id}>
-                                {columns.map((col) => (
-                                    <TableCell key={col.name}>{entity[col.name]}</TableCell>
-                                ))}
-                                <TableCell align="right" sx={{display: "flex", flexDirection: "row"}}>
-                                    <Button onClick={() => onEdit(entity)} variant="outlined" color="primary">
-                                        <EditOutlined />
-                                    </Button>
+                                {columns.map((col) => {
+                                    if (col.hidden !== true)
+                                        return (
+                                            <TableCell 
+                                                sx={{
+                                                    whiteSpace: 'nowrap',
+                                                    overflow: 'hidden',
+                                                    textOverflow: 'ellipsis',
+                                                }} 
+                                                key={col.name}
+                                            >
+                                                {entity[col.name]}
+                                            </TableCell>
+                                        )
+                                })}
+                                {action &&
+                                    <TableCell align="right" sx={{
+                                        display: "flex",
+                                        flexDirection: "row"
+                                    }}>
+                                        <Button onClick={() => onEdit(entity)} variant="outlined" color="primary">
+                                            <EditOutlined />
+                                        </Button>
 
-                                    <Button
-                                        onClick={() => onDelete(entity.id)}
-                                        variant="outlined"
-                                        color="secondary"
-                                        style={{ marginLeft: '5px' }}
-                                    >
-                                        <DeleteOutlined />
-                                    </Button>
-                                </TableCell>
+                                        <Button
+                                            onClick={() => onDelete(entity.id)}
+                                            variant="outlined"
+                                            color="secondary"
+                                            style={{ marginLeft: '5px' }}
+                                        >
+                                            <DeleteOutlined />
+                                        </Button>
+                                    </TableCell>
+                                }
                             </TableRow>
                         ))}
                     </TableBody>

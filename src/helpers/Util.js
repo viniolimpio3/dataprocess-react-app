@@ -1,3 +1,5 @@
+import api from "../services/api"
+
 class Util {
 
     static api_base_url(op = false) {
@@ -8,7 +10,7 @@ class Util {
         return `${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}`
     }
 
-    static isAuthenticated() {
+    static async isAuthenticated() {
         if (localStorage.length === 0) return false
 
         const token = localStorage.getItem('@DataProcess:token')
@@ -17,7 +19,6 @@ class Util {
 
         const localUser = JSON.parse(localStorage.getItem('@DataProcess:user'))
 
-        console.log(localUser)
         if (!localUser || localUser === '' || typeof localUser !== 'object' || !localUser.email) return false
 
         return true
@@ -54,11 +55,23 @@ class Util {
 
     static convertDateToISO(dateString) {
         const [day, month, year] = dateString.split("/");
-    
+
         const date = new Date(Date.UTC(year, month - 1, day));
-    
+
         return date.toISOString();
     }
-    
+
+
+    static generateColor() {
+        let randomColorString = "#";
+        const arrayOfColorFunctions = "0123456789abcdef";
+        for (let x = 0; x < 6; x++) {
+            let index = Math.floor(Math.random() * 16);
+            let value = arrayOfColorFunctions[index];
+
+            randomColorString += value;
+        }
+        return randomColorString;
+    };
 }
 export default Util
