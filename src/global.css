@@ -73,6 +73,14 @@ h4 {
     font-size: 1.4rem !important;
 }
 
+.main-overflow-auto {
+    overflow: auto;
+}
+
+.bg-w {
+    background-color: white;
+}
+
 
 form input:focus, textarea:focus{
     border-left: 6px solid var(--primary);

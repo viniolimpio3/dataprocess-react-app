@@ -86,20 +86,20 @@ export default function Fornecedores() {
 	]
 
     return (
-        <Box sx={{ display: 'flex', width: "100vw !important"}}>
+        <Box sx={{ display: 'flex'}}>
             <CssBaseline />
             <Sidebar />
-            <Box component="main" sx={{ p: 3, bgcolor: '#F5F5F5', minHeight: '100vh' }}>
+            <Box className="main-overflow-auto" component="main" sx={{ p: 3, bgcolor: '#F5F5F5', minHeight: '100vh' }}>
                 <Header user={user} />
                 <TabContext value={value}>
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider', overflowX: "hidden",}}>
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider', overflowX: "hidden",}} className="bg-w">
                         <TabList onChange={handleChange} aria-label="lab API tabs example">
                             <Tab label="Dashboard" value="1" />
                             <Tab label="Formas Pag." value="2" />
                             <Tab label="Pagamentos" value="3" />
                         </TabList>
                     </Box>
-                    <TabPanel value="1">
+                    <TabPanel value="1" className="bg-w">
                         <Grid container spacing={3}>
                             <Grid item size={{ xs: 12, md: 4 }} >
                                 <StatCard title="Gasto Total" value={dashInfos?.gastoFornecedores?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} icon="Money" />
@@ -110,7 +110,7 @@ export default function Fornecedores() {
                             <Grid item size={{ xs: 12, md: 4 }} >
                                 <StatCard title="Valor A Pagar" value={dashInfos?.valorAPagar} subtitle="" icon="Money" />
                             </Grid>
-                            <Grid item size={{ xs: 12 }} >
+                            <Grid item size={{ xs: 12 }} sx={{ maxWidth: '100%' }} >
                                 <BasicCRUD
                                     api={api}
                                     entityName={entityName}
@@ -126,7 +126,7 @@ export default function Fornecedores() {
                             </Grid>
                         </Grid>
                     </TabPanel>
-                    <TabPanel value="2">
+                    <TabPanel value="2" className="bg-w">
 						<BasicCRUD
 							api={api}
 							entityName={"formaPagamento"}
@@ -135,7 +135,7 @@ export default function Fornecedores() {
 						/>
 
 					</TabPanel>
-                    <TabPanel value="3">
+                    <TabPanel value="3" className="bg-w">
                         <EntityList
                             entities={pagamentos}
                             onEdit={setEditingEntity}
@@ -148,6 +148,5 @@ export default function Fornecedores() {
                 </TabContext>
             </Box>
         </Box>
-
     )
 }

@@ -73,5 +73,11 @@ class Util {
         }
         return randomColorString;
     };
+
+    static BRL (num){
+        if(typeof num != 'number')
+            return ''
+        return num.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
 }
 export default Util

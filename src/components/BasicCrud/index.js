@@ -62,7 +62,7 @@ export default function BasicCRUD({ entityName, fields, api, requiredFields, cus
 	};
 
 	return (
-		<Grid container spacing={1}>
+		<Grid container spacing={1} className="bg-w">
 			<Grid item size={{ xs: 6 }}>
 				<Typography variant="h6" align="left" gutterBottom>
 					{`Gerenciamento de ${entityName}`}

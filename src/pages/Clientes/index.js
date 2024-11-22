@@ -24,7 +24,7 @@ export default function Clientes() {
 		<Box sx={{ display: 'flex' }}>
 			<CssBaseline />
 			<Sidebar />
-			<Box component="main" sx={{ flexGrow: 1, p: 3, bgcolor: '#F5F5F5', minHeight: '100vh' }}>
+			<Box className="main-overflow-auto" component="main" sx={{ flexGrow: 1, p: 3, bgcolor: '#F5F5F5', minHeight: '100vh' }}>
 				<Header user={user} />
 				<BasicCRUD
 					api={api}

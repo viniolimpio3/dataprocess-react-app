@@ -115,7 +115,7 @@ export default function Rh() {
 	},
 	{
 		inputName: "idFormaPagamento",
-		name: "formaPagamento",
+		name: "forma Pagamento",
 		label: "Forma Pag.",
 		columnRef: 'tipo'
 	}]
@@ -172,16 +172,15 @@ export default function Rh() {
 				<Header user={user} />
 
 				<TabContext value={value}>
-					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+					<Box sx={{ borderBottom: 1, borderColor: 'divider'}} className="bg-w">
 						<TabList onChange={handleChange} aria-label="lab API tabs example">
 							<Tab label="Dashboard" value="1" />
 							<Tab label="Formas de Pagamento" value="4" />
 							<Tab label="Funcionários" value="2" />
 							<Tab label="Folha de Pagamento" value="3" />
-
 						</TabList>
 					</Box>
-					<TabPanel value="1">
+					<TabPanel value="1" className="bg-w">
 						<Grid container spacing={3}>
 							<Grid item size={{ xs: 12, md: 6 }} >
 								<StatCard title="Total de colaboradores" value={dashInfos?.countFuncionarios} subtitle="Número de colaboradores ativos" icon="People" />
@@ -200,7 +199,7 @@ export default function Rh() {
 							</Grid>
 						</Grid>
 					</TabPanel>
-					<TabPanel value="2">
+					<TabPanel value="2" className="bg-w">
 						<Grid container spacing={1}>
 							<Grid item size={{ xs: 6 }}>
 								<Typography variant="h6" align="left" gutterBottom>
@@ -276,7 +275,7 @@ export default function Rh() {
 							</Grid>
 						</Grid>
 					</TabPanel>
-					<TabPanel value="3">
+					<TabPanel value="3" className="bg-w">
 						<EntityList
 							entities={folha}
 							onEdit={setEditingEntity}
@@ -287,7 +286,7 @@ export default function Rh() {
 
 					</TabPanel>
 
-					<TabPanel value="4">
+					<TabPanel value="4" className="bg-w">
 						<BasicCRUD
 							api={api}
 							entityName={"formaPagamento"}

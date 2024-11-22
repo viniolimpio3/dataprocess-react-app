@@ -26,15 +26,15 @@ function EntityList({ entities, columns, onEdit, onDelete, action = true, custom
     };
 
     return (
-        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+        <Paper sx={{ width: '100%'}}>
             <TableContainer component={Paper} 
                 sx={{ 
                     maxHeight: 500,
-                    maxWidth: '100vw !important',
+                    maxWidth: '100% !important',
                     overflowX: 'auto'
                 }}
             >
-                <Table aria-label="sticky table" sx={{ minWidth: 750 }}>
+                <Table stickyHeader aria-label="sticky table" sx={{ minWidth: 750 }}>
                     <TableHead>
                         <TableRow>
                             {columns.map((col) => {

@@ -1,7 +1,8 @@
 import React from "react";
 import { useAuth } from "../../contexts/authContext";
 
-import { Box, Grid2 as Grid, CssBaseline } from '@mui/material';
+import { Box, CssBaseline } from '@mui/material';
+import Grid from "@mui/material/Grid2";
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
 
@@ -12,7 +13,7 @@ export default function Relatorios() {
 			<Box sx={{ display: 'flex' }}>
 				<CssBaseline />
 				<Sidebar />
-				<Box component="main" sx={{ flexGrow: 1, p: 3, bgcolor: '#F5F5F5', minHeight: '100vh' }}>
+				<Box component="main" sx={{ flexGrow: 1, padding: 3, bgcolor: '#F5F5F5', minHeight: '100vh' }}>
 					<Header user={user} />
 					<Grid container spacing={3}>
 						TODO: Relatórios

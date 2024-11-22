@@ -3,13 +3,16 @@ import { Card, CardContent, Typography, Box } from '@mui/material';
 import PeopleIcon from '@mui/icons-material/People';
 import FolderIcon from '@mui/icons-material/Folder';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import { Money } from '@mui/icons-material';
+import { Money, NoCrash } from '@mui/icons-material';
 
 const icons = {
     People: <PeopleIcon fontSize="large" style={{ color: '#ff6f61' }} />,
     Folder: <FolderIcon fontSize="large" style={{ color: '#ffc107' }} />,
     LocalShipping: <LocalShippingIcon fontSize="large" style={{ color: '#4caf50' }} />,
-    Money: <Money fontSize="large" style={{ color: '#4caf50' }} />
+    Money: <Money fontSize="large" style={{ color: '#4caf50' }} />,
+    MaintenanceCar: <NoCrash fontSize="large" style={{ color: '#487293' }} />,
+    Debt: <Money fontSize="large" style={{ color: '#be2020' }} />,
+
 };
 
 function StatCard({ title, value, subtitle, icon }) {
