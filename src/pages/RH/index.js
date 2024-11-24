@@ -115,7 +115,7 @@ export default function Rh() {
 	},
 	{
 		inputName: "idFormaPagamento",
-		name: "forma Pagamento",
+		name: "formaPagamento",
 		label: "Forma Pag.",
 		columnRef: 'tipo'
 	}]
