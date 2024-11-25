@@ -36,7 +36,7 @@ function EntityList({ entities, columns, onEdit, onDelete, action = true, custom
             >
                 <Table stickyHeader aria-label="sticky table" sx={{ minWidth: 750 }}>
                     <TableHead>
-                        <TableRow>
+                        <TableRow key="header">
                             {columns.map((col) => {
                                 if (col.hidden !== true)
                                     return (
@@ -69,7 +69,7 @@ function EntityList({ entities, columns, onEdit, onDelete, action = true, custom
                                                     overflow: 'hidden',
                                                     textOverflow: 'ellipsis',
                                                 }} 
-                                                key={col.name}
+                                                key={`${entity.id}-${col.name}`}
                                             >
                                                 {entity[col.name]}
                                             </TableCell>

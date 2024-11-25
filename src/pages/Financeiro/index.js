@@ -11,15 +11,31 @@ import Grid from "@mui/material/Grid2";
 import Util from "../../helpers/Util";
 import StatCard from "../../components/StatCard";
 import { toast } from "react-toastify";
+import Entradas from "./Entradas";
+import Saidas from "./Saidas";
 
 export default function Financeiro() {
 	const { user } = useAuth();
 	const [value, setValue] = React.useState('1');
 	const [dashInfos, setDashInfos] = useState({});
 
+	useEffect(() => {
+        buscaDashInfos()
+    }, []);
+
 	const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+	const buscaDashInfos = async () => {
+        try {
+            const response = await api.get(`/api/v1/entrada/Dash`, Util.getApiAuthHeader());
+            if (response.status === 200)
+                setDashInfos(response.data.data);
+        } catch (ex) {
+            toast.error(`Erro ao carregar Dash de entrada. `, ex);
+        }
+    }
 
 	return (
 		<>
@@ -38,32 +54,23 @@ export default function Financeiro() {
 							</TabList>
 						</Box>
 						<TabPanel value="1" className="bg-w">
-							Dash
-							<Grid container spacing={3}>
+							<Grid container spacing={3}>								
 								<Grid item size={{ xs: 12, md: 6 }} >
-									<StatCard title="Qtd. Veículos" value={dashInfos?.qtdVeiculos} subtitle="Veículos próprios e de funcionários" icon="Money" />
+									<StatCard title="Entradas" value={Util.BRL(dashInfos?.entradas)} subtitle="" icon="Money" />
 								</Grid>
 								<Grid item size={{ xs: 12, md: 6 }} >
-									<StatCard title="Gastos Totais" value={Util.BRL(dashInfos?.gastosTotais)} subtitle="Saídas, abastecimentos e mecânico" icon="People" />
+									<StatCard title="Saídas" value={Util.BRL(dashInfos?.saidas)} subtitle="" icon="Debt" />
 								</Grid>
-								<Grid item size={{ xs: 12, md: 4 }} >
-									<StatCard title="Abastecimentos" value={Util.BRL(dashInfos?.gastoAbastecimento)} subtitle="" icon="Money" />
-								</Grid>
-								<Grid item size={{ xs: 12, md: 4 }} >
-									<StatCard title="Gastos adicionais" value={Util.BRL(dashInfos?.gastosAdicionais)} subtitle="" icon="MaintenanceCar" />
-								</Grid>
-								<Grid item size={{ xs: 12, md: 4 }} >
-									<StatCard title="Valor A Pagar" value={Util.BRL(dashInfos?.valorAPagar)} subtitle="" icon="Debt" />
+								<Grid item size={{ xs: 6 }} >
+									<StatCard title="Lucro" value={Util.BRL(dashInfos?.lucro)} subtitle="" icon="Money" />
 								</Grid>
 							</Grid>
 						</TabPanel>
 						<TabPanel value="2" className="bg-w">
-							Entradas
-							{/* <Entradas /> */}
+							<Entradas />
 						</TabPanel>
 						<TabPanel value="3" className="bg-w">
-							Saídas
-							{/* <Saidas /> */}
+							<Saidas />
 						</TabPanel>
 					</TabContext>
 				</Box>
