@@ -117,7 +117,8 @@ export default function Rh() {
 		inputName: "idFormaPagamento",
 		name: "formaPagamento",
 		label: "Forma Pag.",
-		columnRef: 'tipo'
+		columnRef: 'tipo',
+		canCreate: false
 	}]
 
 	const columnsFolha = [

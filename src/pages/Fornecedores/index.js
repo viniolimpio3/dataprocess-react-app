@@ -61,7 +61,8 @@ export default function Fornecedores() {
         inputName: "idFormaPagamento",
         name: "formaPagamento",
         label: "Forma Pag.",
-        columnRef: 'tipo'
+        columnRef: 'tipo',
+		canCreate: false
     }];
 
     const handleChange = (event, newValue) => {

@@ -62,11 +62,11 @@ const SideBar = () => {
             title: "Fornecedores",
             icon: <Assignment />,
         },
-        {
-            path: "/relatorios",
-            title: "Relatórios",
-            icon: <Assessment />,
-        }
+        // {
+        //     path: "/relatorios",
+        //     title: "Relatórios",
+        //     icon: <Assessment />,
+        // }
     ];
 
     return (

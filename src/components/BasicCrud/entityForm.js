@@ -101,6 +101,12 @@ function EntityForm({ fields, entity, onSave, onCancel, requiredFields, subEntit
             }
             if (formData[campo] === 'true' || formData[campo] === 'false')
                 formData[campo] = formData[campo] === 'true';
+
+            if(formData[campo] == ""){
+                const newFormData = formData;
+                delete newFormData[campo];
+                setFormData(newFormData)
+            }
         }
 
         onSave(formData);
@@ -138,7 +144,7 @@ function EntityForm({ fields, entity, onSave, onCancel, requiredFields, subEntit
                             );
                     })}
 
-                    {subEntities && subEntities?.map(({ name, label, inputName, columnRef }) => (
+                    {subEntities && subEntities?.map(({ name, label, inputName, columnRef, canCreate }) => (
                         <Box key={name}>
                             <Select
                                 options={subEntityOptions[name] || []}
@@ -190,7 +196,7 @@ function EntityForm({ fields, entity, onSave, onCancel, requiredFields, subEntit
                                 }}
                                 required={requiredFields.includes(inputName)}
                                 onKeyDown={(e) => {
-                                    if (e.key === "Enter") {
+                                    if (e.key === "Enter" && canCreate !== false) {
                                         e.preventDefault();
                                         const descricao = inputValues[name]?.trim();
                                         if (descricao) {
@@ -198,11 +204,16 @@ function EntityForm({ fields, entity, onSave, onCancel, requiredFields, subEntit
                                         }
                                     }
                                 }}
-                                noOptionsMessage={() =>
-                                    inputValues[name]?.trim()
-                                        ? `Pressione Enter para adicionar "${inputValues[name]}"`
-                                        : "Sem opções disponíveis"
-                                }
+                                noOptionsMessage={() => {
+                                    if(canCreate !== false)
+                                        return inputValues[name]?.trim()
+                                            ? `Pressione Enter para adicionar "${inputValues[name]}"`
+                                            : "Sem opções disponíveis"
+                                    else 
+                                        return inputValues[name]?.trim()
+                                            ? `${label} "${inputValues[name]}" não encontrado`
+                                            : "Sem opções disponíveis"
+                                }}
                                 formatOptionLabel={(option, { context }) =>
                                     context === "menu" ? (
                                         <div

@@ -49,10 +49,10 @@ export default function AppRoutes() {
             path: "/veiculos",
             element: <Veiculos />
         },
-        {
-            path: "/relatorios",
-            element: <Relatorios />
-        }
+        // { // TODO: Implementação Futura
+        //     path: "/relatorios",
+        //     element: <Relatorios />
+        // }
 
     ]
 

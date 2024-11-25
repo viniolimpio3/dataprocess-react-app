@@ -11,6 +11,8 @@ import Grid from "@mui/material/Grid2";
 import Util from "../../helpers/Util";
 import StatCard from "../../components/StatCard";
 import { toast } from "react-toastify";
+import Manutencoes from "./Manutencoes";
+import Abastecimentos from "./Abastecimentos";
 
 export default function Veiculos() {
 	const { user } = useAuth()
@@ -67,7 +69,7 @@ export default function Veiculos() {
 		<Box sx={{ display: 'flex' }}>
 			<CssBaseline />
 			<Sidebar />
-			<Box component="main" sx={{ flexGrow: 1, padding: 3, bgcolor: '#F5F5F5', minHeight: '100vh' }}>
+			<Box className="main-overflow-auto" component="main" sx={{ flexGrow: 1, padding: 3, bgcolor: '#F5F5F5', minHeight: '100vh' }}>
 				<Header user={user} />
 				<TabContext value={value}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider', overflowX: "hidden",}} className="bg-w">
@@ -107,26 +109,11 @@ export default function Veiculos() {
 						/>
 					</TabPanel>
                     <TabPanel value="3" className="bg-w">
-						Manutenções
-						{/* <BasicCRUD
-							api={api}
-							entityName={"manutencao"}
-							fields={manutencaoFields}
-							requiredFields={requiredFieldsManutencao}
-							customValidationFunction={validation}
-						/> */}
+						<Manutencoes />
                     </TabPanel>
 					<TabPanel value="4" className="bg-w">
-						Abastecimentos
-						{/* <BasicCRUD
-							api={api}
-							entityName={"manutencao"}
-							fields={manutencaoFields}
-							requiredFields={requiredFieldsManutencao}
-							customValidationFunction={validation}
-						/> */}
+						<Abastecimentos />
                     </TabPanel>
-                    
                 </TabContext>
 
 			</Box>
